@@ -180,3 +180,35 @@ body {
   margin-bottom: 20px;
 
 }
+
+
+
+.modal-cover {
+  width: 180px;
+  height: 180px;
+  background-color: #ccc;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.modal-info {
+  flex: 1;
+}
+
+.season-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.season-item {
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
