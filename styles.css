@@ -312,4 +312,48 @@ filter-row {
     margin-bottom: 16px;
     text-align: left;
   }
+
+  #modalGenres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+
+  .tag {
+    background: #f1f3f5;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 999px;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  #modalUpdated {
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start; 
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+  .modal-content h3 {
+    font-size: 18px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-align: left;
+  }
+.app-header,
+  .filters,
+  .grid {
+    padding: 16px;       
+    width: 100%;         
+    box-sizing: border-box;
+  }
+
 }
