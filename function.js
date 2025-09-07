@@ -3,6 +3,7 @@ import { Modal } from './modal.js';
 
 const grid = document.getElementById('podcastGrid');
 const genreSelect = document.getElementById('genre');
+const searchInput = document.getElementById('search');
 
 const genreMap = {};
 genres.forEach(g => {
@@ -141,6 +142,15 @@ function populateGenreFilter() {
 
 genreSelect.addEventListener('change', (e) => {
   const filtered = filterByGenre(podcasts, e.target.value);
+  renderItems(filtered, 'podcast');
+});
+
+searchInput.addEventListener('input', function () {
+  const query = this.value.trim().toLowerCase();
+  const filtered = podcasts.filter(podcast =>
+    podcast.title.toLowerCase().includes(query) ||
+    (podcast.description && podcast.description.toLowerCase().includes(query))
+  );
   renderItems(filtered, 'podcast');
 });
 
