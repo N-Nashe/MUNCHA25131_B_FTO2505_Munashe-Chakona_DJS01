@@ -18,7 +18,24 @@ export class Modal {
    * @param {Array<Object>} [options.podcasts=[]] - Array of podcast data.
    */
 
-   /** Bind modal close event listeners. @private */
+  constructor(modalId, options = {}) {
+    this.modal = document.getElementById(modalId);
+    this.modalCover = this.modal.querySelector(Modal.SELECTORS.modalCover);
+    this.modalTitle = this.modal.querySelector(Modal.SELECTORS.modalTitle);
+    this.modalDesc = this.modal.querySelector(Modal.SELECTORS.modalDesc);
+    this.modalGenres = this.modal.querySelector(Modal.SELECTORS.modalGenres);
+    this.modalUpdated = this.modal.querySelector(Modal.SELECTORS.modalUpdated);
+    this.modalSeasons = this.modal.querySelector(Modal.SELECTORS.modalSeasons);
+    this.closeBtn = this.modal.querySelector(Modal.SELECTORS.closeBtn);
+    this.sectionTitle = this.modal.querySelector(Modal.SELECTORS.sectionTitle);
+
+    this.genreMap = options.genreMap || {};
+    this.podcasts = options.podcasts || [];
+
+    this._bindEvents();
+  }
+
+  /** Bind modal close event listeners. @private */
   _bindEvents() {
     this.closeBtn.addEventListener('click', () => this.close());
     window.addEventListener('click', e => {
@@ -45,7 +62,7 @@ export class Modal {
     }
   }
 
-    close() {
+  close() {
     this.modal.classList.add('hidden');
   }
 
@@ -79,7 +96,7 @@ export class Modal {
     this.modal.classList.remove('hidden');
   }
 
-    _setCover(imageUrl, title) {
+  _setCover(imageUrl, title) {
     this.modalCover.innerHTML = '';
     if (imageUrl) {
       const img = document.createElement('img');
@@ -112,7 +129,7 @@ export class Modal {
     })}`;
   }
 
-    _setGenres(genreIds) {
+  _setGenres(genreIds) {
     this.modalGenres.innerHTML = '';
     genreIds.forEach(id => {
       const tag = document.createElement('span');
