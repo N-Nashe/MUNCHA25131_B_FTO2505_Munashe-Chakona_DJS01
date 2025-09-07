@@ -138,3 +138,25 @@ export class Modal {
     const shows = this.podcasts.filter(p =>
       genre.shows?.includes(p.id) || genre.shows?.includes(String(p.id))
     );
+
+        if (shows.length === 0) {
+      showsContainer.textContent = 'No shows available for this genre.';
+    } else {
+      shows.forEach(show => {
+        const showDiv = document.createElement('div');
+        showDiv.className = 'show-item';
+        showDiv.textContent = show.title;
+        showDiv.addEventListener('click', () => this.open(show, false));
+        showsContainer.appendChild(showDiv);
+      });
+    }
+
+    this.modalSeasons.appendChild(showsContainer);
+  }
+
+  _setSectionTitle(title) {
+    if (this.sectionTitle) {
+      this.sectionTitle.textContent = title;
+    }
+  }
+}
