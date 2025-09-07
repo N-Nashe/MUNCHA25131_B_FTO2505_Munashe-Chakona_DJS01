@@ -78,3 +78,63 @@ export class Modal {
     this._setSeasons(podcast.seasons);
     this.modal.classList.remove('hidden');
   }
+
+    _setCover(imageUrl, title) {
+    this.modalCover.innerHTML = '';
+    if (imageUrl) {
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.alt = `${title} Cover`;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      this.modalCover.appendChild(img);
+    }
+  }
+
+  _setTitle(title) {
+    this.modalTitle.textContent = title || '';
+  }
+
+  _setDescription(description) {
+    this.modalDesc.textContent = description || '';
+  }
+
+  _setUpdated(updated) {
+    if (!updated) {
+      this.modalUpdated.textContent = '';
+      return;
+    }
+    this.modalUpdated.textContent = `📅 Last updated: ${new Date(updated).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })}`;
+  }
+
+    _setGenres(genreIds) {
+    this.modalGenres.innerHTML = '';
+    genreIds.forEach(id => {
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+  tag.textContent = this.genreMap[String(id)] || this.genreMap[Number(id)] || `Genre ${id}`;
+      this.modalGenres.appendChild(tag);
+    });
+  }
+
+  _setSeasons(seasons) {
+    this.modalSeasons.innerHTML = '';
+    if (seasons) {
+      this.modalSeasons.textContent = `Seasons: ${seasons}`;
+    }
+  }
+
+  _setShowsForGenre(genre) {
+    this.modalSeasons.innerHTML = '';
+
+    const showsContainer = document.createElement('div');
+    showsContainer.className = 'shows-list';
+
+    const shows = this.podcasts.filter(p =>
+      genre.shows?.includes(p.id) || genre.shows?.includes(String(p.id))
+    );
